@@ -1,12 +1,7 @@
 [
   {
     "titulo": "Solo Leveling",
-    "capa": "https://image.tmdb.org/t/p/w500/v999p9uYnN1X6S0N6G7x45y0FvN.jpg",
-    "link": "https://seu-link-de-video.com"
-  },
-  {
-    "titulo": "Naruto Shippuden",
-    "capa": "https://image.tmdb.org/t/p/w500/98765.jpg",
-    "link": "https://seu-link-de-video.com"
+    "capa": "https://m.media-amazon.com/images/M/MV5BODViZGM5NmEtYzhhZS00YjVlLTg0Y2EtOTMwZDRlY2JjY2E2XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_.jpg",
+    "link": "LINK_AQUI"
   }
 ]
