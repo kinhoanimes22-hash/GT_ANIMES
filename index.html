@@ -3,89 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GT ANIMES</title>
+    <title>GT ANIMES - Sistema Otimizado</title>
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; margin: 0; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
-        
-        .anime-card { 
-            background: #111; 
-            margin: 10px; 
-            padding: 10px; 
-            border-radius: 10px; 
-            width: 160px; 
-            border: 1px solid #222; 
-        }
-        
-        .anime-card img { 
-            width: 100%; 
-            border-radius: 5px; 
-            height: 230px; 
-            object-fit: cover; 
-            background-color: #222; 
-        }
-
-        .btn-play { background: #FF0000; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 5px; }
-        input#search { width: 80%; padding: 12px; border-radius: 20px; border: 1px solid #FF0000; background: #000; color: #fff; margin-top: 20px; }
-        
-        footer { margin-top: 30px; padding: 20px; border-top: 1px solid #222; }
-        .link-footer { color: #666; font-size: 12px; text-decoration: none; }
-        .btn-dev { display: inline-block; margin-top: 15px; color: #FF0000; text-decoration: none; border: 1px solid #FF0000; padding: 5px 15px; border-radius: 15px; font-size: 14px; }
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; margin: 0; padding-bottom: 50px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; }
+        .anime-card { background: #111; margin: 8px; padding: 10px; border-radius: 10px; width: 150px; border: 1px solid #222; }
+        .anime-card img { width: 100%; border-radius: 5px; height: 210px; object-fit: cover; background: #222; }
+        h3 { font-size: 14px; margin: 10px 0; height: 35px; overflow: hidden; }
+        .btn-play { background: #FF0000; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        input#search { width: 85%; padding: 12px; border-radius: 25px; border: 1px solid #FF0000; background: #000; color: #fff; margin: 20px 0; outline: none; }
+        footer { margin-top: 20px; border-top: 1px solid #222; padding-top: 20px; }
+        .footer-link { color: #666; text-decoration: none; font-size: 12px; display: block; margin-bottom: 10px; }
+        .dev-link { color: #FF0000; text-decoration: none; border: 1px solid #FF0000; padding: 5px 15px; border-radius: 20px; font-size: 13px; }
     </style>
 </head>
 <body>
 
-    <h1 style="color: #FF0000; margin-top: 30px;">GT ANIMES</h1>
-    <input type="text" id="search" onkeyup="searchAnime()" placeholder="Pesquisar anime...">
+    <h1 style="color: #FF0000; margin-top: 20px;">GT ANIMES</h1>
+    <input type="text" id="search" onkeyup="searchAnime()" placeholder="Pesquisar no catálogo...">
 
     <div class="container" id="animeList">
         </div>
 
     <footer>
-        <a href="termos.html" class="link-footer">Termos de Uso e Privacidade</a><br>
-        <a href="sobre.html" class="btn-dev">👨‍💻 Conheça o Desenvolvedor</a>
+        <a href="termos.html" class="footer-link">Termos de Uso e Privacidade</a>
+        <a href="sobre.html" class="dev-link">👨‍💻 Conheça o Desenvolvedor</a>
     </footer>
 
     <script>
-        // LISTA DE ANIMES (Com desbloqueador de imagem)
         const animes = [
             {
                 "titulo": "Solo Leveling",
-                // O prefixo 'https://wsrv.nl/?url=' desbloqueia a imagem para apps Android
-                "capa": "https://wsrv.nl/?url=www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/5e7f533c3b4f462440d9904d9e07505d.jpg",
-                "link": "https://www.google.com" 
+                "capa": "https://images.weserv.nl/?url=www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/5e7f533c3b4f462440d9904d9e07505d.jpg",
+                "link": "#"
             },
             {
                 "titulo": "One Piece",
-                "capa": "https://wsrv.nl/?url=www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/757b30ec7d08387877408f6681b6c678.jpg",
-                "link": "LINK_AQUI"
+                "capa": "https://images.weserv.nl/?url=www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/757b30ec7d08387877408f6681b6c678.jpg",
+                "link": "#"
             }
         ];
 
-        const container = document.getElementById('animeList');
-        
-        animes.forEach(anime => {
-            // Força o carregamento ignorando o cache antigo
-            const cacheBuster = Math.floor(Math.random() * 1000);
-            
-            container.innerHTML += `
+        function displayAnimes(lista) {
+            const container = document.getElementById('animeList');
+            container.innerHTML = lista.map(anime => `
                 <div class="anime-card">
-                    <img src="${anime.capa}&v=${cacheBuster}" 
-                         alt="${anime.titulo}">
+                    <img src="${anime.capa}" onerror="this.src='https://via.placeholder.com/160x230/222/fff?text=Erro+Capa'">
                     <h3>${anime.titulo}</h3>
-                    <button class="btn-play" onclick="location.href='${anime.link}'">Assistir</button>
+                    <button class="btn-play" onclick="window.location.href='${anime.link}'">Assistir</button>
                 </div>
-            `;
-        });
+            `).join('');
+        }
 
         function searchAnime() {
-            let input = document.getElementById('search').value.toLowerCase();
-            let cards = document.getElementsByClassName('anime-card');
-            for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-                cards[i].style.display = title.includes(input) ? "block" : "none";
-            }
+            let term = document.getElementById('search').value.toLowerCase();
+            let filtered = animes.filter(a => a.titulo.toLowerCase().includes(term));
+            displayAnimes(filtered);
         }
+
+        // Iniciar lista
+        displayAnimes(animes);
     </script>
 </body>
 </html>
