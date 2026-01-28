@@ -3,35 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GT ANIMES - Catálogo</title>
+    <title>GT ANIMES</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 10px; text-align: center; }
-        .search-box { width: 90%; padding: 12px; margin: 20px 0; border-radius: 25px; border: 2px solid #FF0000; background: #111; color: #fff; outline: none; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .anime-card { width: 160px; background: #111; border-radius: 10px; overflow: hidden; border: 1px solid #333; transition: 0.3s; }
-        .anime-card:hover { border-color: #FF0000; transform: scale(1.05); }
-        .anime-card img { width: 100%; height: 230px; object-fit: cover; }
-        .anime-card h3 { font-size: 14px; margin: 8px; height: 35px; overflow: hidden; }
-        .btn-play { background: #FF0000; color: white; border: none; padding: 10px; width: 100%; font-weight: bold; cursor: pointer; }
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        .anime-card { background: #111; margin: 10px; padding: 10px; border-radius: 10px; width: 160px; border: 1px solid #222; }
+        .anime-card img { width: 100%; border-radius: 5px; height: 230px; object-fit: cover; }
+        .btn-play { background: #FF0000; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+        input#search { width: 80%; padding: 12px; border-radius: 20px; border: 1px solid #FF0000; background: #000; color: #fff; margin-top: 20px; }
+        footer { margin-top: 30px; padding: 20px; border-top: 1px solid #222; }
+        .link-footer { color: #666; font-size: 12px; text-decoration: none; margin: 0 10px; }
+        .btn-dev { display: inline-block; margin-top: 15px; color: #FF0000; text-decoration: none; border: 1px solid #FF0000; padding: 5px 15px; border-radius: 15px; font-size: 14px; }
     </style>
 </head>
 <body>
-    <h1 style="color: #FF0000;">GT ANIMES</h1>
-    <input type="text" id="search" class="search-box" placeholder="Pesquisar anime dublado..." onkeyup="searchAnime()">
+
+    <h1 style="color: #FF0000; margin-top: 30px;">GT ANIMES</h1>
+
+    <input type="text" id="search" onkeyup="searchAnime()" placeholder="Pesquisar anime dublado...">
 
     <div class="container" id="animeList">
         <div class="anime-card">
-            <img src="https://via.placeholder.com/160x230" alt="Capa">
-            <h3>Anime Exemplo</h3>
-            <button class="btn-play" onclick="location.href='LINK_DO_VIDEO'">Assistir</button>
+            <img src="https://image.tmdb.org/t/p/w500/v999p9uYnN1X6S0N6G7x45y0FvN.jpg" alt="Capa Anime">
+            <h3>Solo Leveling</h3>
+            <button class="btn-play" onclick="location.href='LINK_DO_VIDEO_AQUI'">Assistir</button>
         </div>
-        </div>
-<div style="text-align: center; padding: 20px; border-top: 1px solid #222;">
-    <a href="termos.html" style="color: #666; font-size: 12px; text-decoration: none;">Termos de Uso e Política de Privacidade</a>
-</div>
-<div style="margin-bottom: 15px;">
-    <a href="sobre.html" style="color: #FF0000; text-decoration: none; font-size: 14px; border: 1px solid #FF0000; padding: 5px 15px; border-radius: 15px;">👨‍💻 Conheça o Desenvolvedor</a>
-</div>
+    </div>
+
+    <footer>
+        <a href="termos.html" class="link-footer">Termos de Uso e Privacidade</a>
+        <br>
+        <a href="sobre.html" class="btn-dev">👨‍💻 Conheça o Desenvolvedor</a>
+    </footer>
 
     <script>
         function searchAnime() {
