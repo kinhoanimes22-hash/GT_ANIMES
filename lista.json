@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GT ANIMES - Sistema Otimizado</title>
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; text-align: center; margin: 0; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        .anime-card { background: #111; margin: 10px; padding: 10px; border-radius: 10px; width: 160px; border: 1px solid #222; }
+        .anime-card img { width: 100%; border-radius: 5px; height: 230px; object-fit: cover; }
+        .btn-play { background: #FF0000; color: #fff; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+        input#search { width: 80%; padding: 12px; border-radius: 20px; border: 1px solid #FF0000; background: #000; color: #fff; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <h1 style="color: #FF0000; padding-top: 20px;">GT ANIMES</h1>
+    <input type="text" id="search" onkeyup="searchAnime()" placeholder="Pesquisar no catálogo...">
+
+    <div class="container" id="animeList">
+        </div>
+
+    <script>
+        // Função para carregar todos os animes da pasta data [cite: 2026-01-18]
+        fetch('data/lista.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('animeList');
+                data.forEach(anime => {
+                    container.innerHTML += `
+                        <div class="anime-card">
+                            <img src="${anime.capa}" alt="Capa">
+                            <h3>${anime.titulo}</h3>
+                            <button class="btn-play" onclick="location.href='${anime.link}'">Assistir</button>
+                        </div>
+                    `;
+                });
+            });
+
+        function searchAnime() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let cards = document.getElementsByClassName('anime-card');
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                cards[i].style.display = title.includes(input) ? "block" : "none";
+            }
+        }
+    </script>
+</body>
+</html>
